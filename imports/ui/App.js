@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Task from './Task';
+import AddForm from './AddForm';
 
 // App component - represents the whole app
 class App extends Component { 
@@ -12,7 +13,7 @@ class App extends Component {
       <div className="container">
         <header>
           <h1>Todo List</h1>
-
+          <AddForm />  
 
         </header>
  

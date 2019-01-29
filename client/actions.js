@@ -1,3 +1,6 @@
+import {Tracker} from 'meteor/tracker';
+import {Meteor} from 'meteor/meteor';
+
 export const SET_TODOS  = 'SET_TODOS';
 export const SET_ERROR = 'SET_ERROR';
 export const VisibilityFilters = {
@@ -20,7 +23,14 @@ export function getError (error) {
 }
 
 export function addTodo(text) {
-    
+    return (dispatch) => {
+        Tracker.autorun(() => {
+           Meteor.call('tasks.insert', text, (error) => {
+               if (!error) return;
+               dispatch(getError(true))
+           })
+         })
+       }
 }
 
 export function removeTodo(_id) {
