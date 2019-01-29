@@ -1,5 +1,5 @@
-import {Tracker} from 'meteor/tracker';
 import {Meteor} from 'meteor/meteor';
+//import {Tasks} from '../imports/api/tasks'
 
 export const SET_TODOS  = 'SET_TODOS';
 export const SET_ERROR = 'SET_ERROR';
@@ -15,6 +15,15 @@ export function setTodos(todos) {
         payload: todos
     }
 }
+// export function fetchAll() {
+//     return function (dispatch) {
+//         Meteor.subscribe('tasks', function () {
+//             dispatch(setTodos(Tasks.find({}, {sort: {createdAt: 1}}).fetch()
+//             ));
+//         });
+//     };
+// }
+
 export function getError (error) {
     return {
         type: SET_ERROR,
@@ -24,39 +33,32 @@ export function getError (error) {
 
 export function addTodo(text) {
     return (dispatch) => {
-        Tracker.autorun(() => {
            Meteor.call('tasks.insert', text, (error) => {
                if (!error) return;
                dispatch(getError(true))
            })
-         })
        }
 }
 
 export function removeTodo(_id) {
     return (dispatch) => {
-     Tracker.autorun(() => {
         Meteor.call('tasks.remove', _id, (error) => {
             if (!error) {
                 return 
             };
             dispatch(getError(true))
         })
-      })
     }
 }
 
 export function toggleTodo(_id, completed) {
     return (dispatch) => {
-    Tracker.autorun(() => {
-        console.log('action', completed)
         Meteor.call('tasks.setChecked', _id, completed, (error) => {
             if (!error) {
                 return
             };
             dispatch(getError(true))
         })
-      })
     }
 }
 

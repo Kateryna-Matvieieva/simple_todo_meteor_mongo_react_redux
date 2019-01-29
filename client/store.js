@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import  rootReducer from './reducers';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 
 import { Tracker } from 'meteor/tracker';
 import { Tasks } from '../imports/api/tasks';
@@ -15,7 +15,7 @@ const initialState = {
       ]
 } 
 
-export const store = createStore(rootReducer, initialState, applyMiddleware(logger, thunk));
+export const store = createStore(rootReducer, initialState, applyMiddleware(logger, thunkMiddleware));
 
 Tracker.autorun(() => {
     store.dispatch(
