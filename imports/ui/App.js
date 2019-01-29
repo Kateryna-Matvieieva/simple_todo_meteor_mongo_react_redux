@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import Task from './Task';
 
 // App component - represents the whole app
-export default class App extends Component { 
+class App extends Component { 
   render() {
     if(this.props.error)
     return <div>Error</div>
@@ -15,11 +17,15 @@ export default class App extends Component {
         </header>
  
         <ul>
-
+          {this.props.todos.map((task) => (
+          <Task key={task._id} task={task} />
+        ))}
         </ul>
        </div>
     );
   }
 }
-
-
+const mapStateToProps = (state) => ({
+  todos: state.todos
+})
+export default connect(mapStateToProps)(App)
