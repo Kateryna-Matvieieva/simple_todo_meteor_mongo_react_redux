@@ -34,12 +34,32 @@ export function addTodo(text) {
 }
 
 export function removeTodo(_id) {
-
+    return (dispatch) => {
+     Tracker.autorun(() => {
+        Meteor.call('tasks.remove', _id, (error) => {
+            if (!error) {
+                return 
+            };
+            dispatch(getError(true))
+        })
+      })
+    }
 }
 
 export function toggleTodo(_id, completed) {
-   
+    return (dispatch) => {
+    Tracker.autorun(() => {
+        console.log('action', completed)
+        Meteor.call('tasks.setChecked', _id, completed, (error) => {
+            if (!error) {
+                return
+            };
+            dispatch(getError(true))
+        })
+      })
+    }
 }
+
 export const setVisibilityFilter = filter => ({
     type: 'SET_VISIBILITY_FILTER',
     filter

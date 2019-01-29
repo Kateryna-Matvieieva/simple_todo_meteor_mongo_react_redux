@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import Task from './Task';
+import VisibleTodos from './getVisibleTodos';
 import AddForm from './AddForm';
 
 // App component - represents the whole app
@@ -18,15 +17,11 @@ class App extends Component {
         </header>
  
         <ul>
-          {this.props.todos.map((task) => (
-          <Task key={task._id} task={task} />
-        ))}
+          <VisibleTodos />
         </ul>
        </div>
     );
   }
 }
-const mapStateToProps = (state) => ({
-  todos: state.todos
-})
-export default connect(mapStateToProps)(App)
+
+export default App
