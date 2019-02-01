@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {removeTodo, toggleTodo} from '../../client/actions'
+import {removeTodo, toggleTodo, togglePrivate} from '../../client/actions'
 import TaskList from './TaskList';
 
 import { VisibilityFilters } from '../../client/actions'
@@ -18,20 +18,27 @@ const getVisibleTodos = (todos, filter=VisibilityFilters.SHOW_ALL) => {
 }
 
 const mapStateToProps = state => ({
-  todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  todos: getVisibleTodos(state.todos, state.visibilityFilter),
+  error: state.error,
+  showPrivateButton: state.user
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
       toggleChecked: ({_id, completed}) => {
-          
           dispatch(toggleTodo(_id, completed ));
         },
       deleteThisTask: ( _id )=> {
           dispatch(removeTodo(_id));
         }
+      // togglePrivate: ({_id, completed}) => {
+      //   dispatch(togglePrivate(_id, completed ));
+      // }
       }
+
+    
     }
+  
 
 export default connect(
   mapStateToProps,

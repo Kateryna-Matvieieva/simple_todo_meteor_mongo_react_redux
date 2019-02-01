@@ -4,9 +4,10 @@ import React from 'react';
 import { store } from './store'
 import { Provider } from 'react-redux';
 import App from '../imports/ui/App.js';
+import '../imports/startup/accounts-config.js';
  
 Meteor.startup(() => {
   render(<Provider store={store}>
     <App />
-</Provider>, document.getElementById('root'));
+</Provider>, document.getElementById('render'));
 });

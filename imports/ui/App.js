@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AddForm from './AddForm';
 import VisibleTodos from './getVisibleTodos';
+import Footer from './Footer';
+import AccountsUIWrapper from './AccountsUIWrapper.js';
 // import {connect} from 'react-redux';
 // import { fetchAll } from '../../client/actions';
  
@@ -15,6 +17,7 @@ class App extends Component {
       <div className="container">
         <header>
           <h1>Todo List</h1>
+          <AccountsUIWrapper />
           <AddForm />  
 
         </header>
@@ -22,6 +25,7 @@ class App extends Component {
         <ul>
           <VisibleTodos />
         </ul>
+        <Footer />
        </div>
     );
   }

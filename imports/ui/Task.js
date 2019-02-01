@@ -19,6 +19,12 @@ export default class Task extends Component {
           checked={!!this.props.task.completed}
           onClick={this.props.toggleChecked.bind(null, { _id: this.props._id, completed: !this.props.task.completed})}
         />
+
+        {/* { !this.props.showPrivateButton ? (
+          <button className="toggle-private" onClick={this.togglePrivate.bind(null, {_id: this.props._id,  private: !this.props.task.private})}>
+            { this.props.task.private ? 'Private' : 'Public' }
+          </button>
+        ) : ''} */}
  
         <span className="text">{this.props.task.text} (user: {this.props.task.username})</span>
       </li>
