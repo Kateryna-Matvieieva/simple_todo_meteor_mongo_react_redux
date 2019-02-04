@@ -32,7 +32,7 @@ function error (state=false, action) {
             return state;
         }
   }
-function user (state='none', action) {
+function user (state=null, action) {
   switch(action.type){
     case SET_USER:
     return  action.payload
