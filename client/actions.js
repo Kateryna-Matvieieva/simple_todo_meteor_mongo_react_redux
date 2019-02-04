@@ -3,11 +3,11 @@ import {Tasks} from '../imports/api/tasks'
 
 export const SET_TODOS  = 'SET_TODOS';
 export const SET_ERROR = 'SET_ERROR';
+export const SET_USER = 'SET_USER';
 export const VisibilityFilters = {
     SHOW_ALL: 'SHOW_ALL',
     SHOW_COMPLETED: 'SHOW_COMPLETED',
     SHOW_ACTIVE: 'SHOW_ACTIVE',
-    SET_USER: 'SET_USER'
   }
 
 export function setTodos(todos) {
@@ -22,16 +22,14 @@ export function setUser(user) {
         payload: user
     }
 }
+
 export function fetchAll() {
+    
     return function (dispatch) {
         Meteor.subscribe('tasks', function () {
             let todos = Tasks.find({}, {sort: {createdAt: 1}}).fetch();
+            dispatch(setUser(this.connection._userId));
             dispatch(setTodos(todos));
-        });
-        Meteor.subscribe('user', function () {
-            console.log('user', this)
-            // let todos = Tasks.find({}, {sort: {createdAt: 1}}).fetch();
-            // dispatch(setTodos(todos));
         });
     };
 }

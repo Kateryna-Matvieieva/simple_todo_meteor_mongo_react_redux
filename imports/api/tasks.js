@@ -15,9 +15,6 @@ if (Meteor.isServer) {
           ],
         });
       });
-    Meteor.publish('user', function tasksPublication() {
-        return Meteor.users.findOne(this.userId).username
-      });
 }
 
 Meteor.methods({

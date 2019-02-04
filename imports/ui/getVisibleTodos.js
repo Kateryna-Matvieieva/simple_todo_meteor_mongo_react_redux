@@ -20,27 +20,25 @@ const getVisibleTodos = (todos, filter=VisibilityFilters.SHOW_ALL) => {
 const mapStateToProps = state => ({
   todos: getVisibleTodos(state.todos, state.visibilityFilter),
   error: state.error,
-  showPrivateButton: state.user
+  user: state.user
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      toggleChecked: ({_id, completed}) => {
-          dispatch(toggleTodo(_id, completed ));
+        toggleChecked: ({_id, completed}) => {
+            dispatch(toggleTodo(_id, completed ));
+          },
+        deleteThisTask: ( _id )=> {
+            dispatch(removeTodo(_id));
+          },
+        togglePrivate: ({_id, private}) => {
+          dispatch(togglePrivate(_id, private ));
         },
-      deleteThisTask: ( _id )=> {
-          dispatch(removeTodo(_id));
-        }
-      // togglePrivate: ({_id, completed}) => {
-      //   dispatch(togglePrivate(_id, completed ));
-      // }
       }
-
-    
     }
   
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TaskList)
+)(TaskList)  
