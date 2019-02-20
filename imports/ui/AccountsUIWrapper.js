@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze';
-// import {fetchAll} from '../../client/actions';
-// import {connect} from 'react-redux';
-
  
 class AccountsUIWrapper extends Component {
   componentDidMount() {
@@ -26,18 +23,5 @@ class AccountsUIWrapper extends Component {
     return <span ref="container"/>;
   }
 }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//       update: () => {
-//         alert('hi')
-//           dispatch(fetchAll());
-//         },
-//     }
-//   }
 
-
-// export default connect(
-// null,
-// mapDispatchToProps
-// )(AccountsUIWrapper) 
 export default AccountsUIWrapper  
